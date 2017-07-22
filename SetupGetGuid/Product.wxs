@@ -3,13 +3,13 @@
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 
   <Product Id="*" Name="SetupGetGuid" Language="1033" Version="1.0.0.0" Manufacturer="RMCorp" UpgradeCode="21e9efed-e8e7-4558-adfc-bec21c9381bf">
-    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of SetupGetGuid is already installed." />
     <MediaTemplate  EmbedCab="yes"/>
 
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="ProgramFiles64Folder">
         <Directory Id="INSTALLFOLDER" Name="SetupGetGuid">
           <Directory Id="docs" Name="docs" />
         </Directory>
@@ -17,30 +17,30 @@
     </Directory>
 
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-      <Component Id="MainApplication">
-        <File Source="D:\\MainApp\\ProdFiles\\check.txt" />
+      <Component Id="MainApplication" Win64="yes">
+        <File Source="D:\\MainApp\\ProdFiles\\check.txt" ProcessorArchitecture="x64" />
       </Component>
 
-      <Component Id="ModuleA">
-        <File Source="D:\\MainApp\\ProdFiles\\ModuleA\\ModuleA.txt" />
+      <Component Id="ModuleA" Win64="yes">
+        <File Source="D:\\MainApp\\ProdFiles\\ModuleA\\ModuleA.txt" ProcessorArchitecture="x64"/>
       </Component>
       
-        <Component Id="ModuleB">
-        <File Source="D:\\MainApp\\ProdFiles\\ModuleB\\ModuleB.txt" />
+        <Component Id="ModuleB" Win64="yes">
+        <File Source="D:\\MainApp\\ProdFiles\\ModuleB\\ModuleB.txt" ProcessorArchitecture="x64"/>
       </Component>
       
-      <Component Id="ModuleC">
-        <File Source="D:\\MainApp\\ProdFiles\\ModuleC\\ModuleC.txt" />
+      <Component Id="ModuleC" Win64="yes">
+        <File Source="D:\\MainApp\\ProdFiles\\ModuleC\\ModuleC.txt" ProcessorArchitecture="x64"/>
       </Component>
     </ComponentGroup>
 
     <ComponentGroup Id="DocComponents" Directory="docs">
-      <Component Id="Documentation">
-        <File Source="D:\\MainApp\\Docs\\docs.txt"/>        
+      <Component Id="Documentation" Win64="yes">
+        <File Source="D:\\MainApp\\Docs\\docs.txt" ProcessorArchitecture="x64"/>        
       </Component>
       
-    <Component Id="ReadMe">
-        <File Source="D:\\MainApp\\Docs\\readme.txt"/>        
+    <Component Id="ReadMe" Win64="yes">
+        <File Source="D:\\MainApp\\Docs\\readme.txt" ProcessorArchitecture="x64"/>        
       </Component>      
     </ComponentGroup>
 
