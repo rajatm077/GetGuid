@@ -44,9 +44,24 @@
       </Component>      
     </ComponentGroup>
 
-    <Feature Id="ProductFeature" Title="SetupGetGuid" Level="1">
-      <ComponentGroupRef Id="ProductComponents" />
+    <Feature Id="ProdDocs" Title="Documnetation" Level="1">
       <ComponentGroupRef Id="DocComponents" />
+    </Feature>
+
+    <Feature Id="ProdFeatures" Title="SetupGetGuid" Level="1">
+      <ComponentRef Id="MainApplication" />
+      
+      <Feature Id="ModuleA" Title="ModuleA" Level="1">
+        <ComponentRef Id="ModuleA" />
+      </Feature>
+      
+      <Feature Id="ModuleB" Title="ModuleB" Level="1">
+        <ComponentRef Id="ModuleB" />
+      </Feature>
+
+      <Feature Id="ModuleC" Title="ModuleC" Level="1">
+        <ComponentRef Id="ModuleC" />
+      </Feature>
     </Feature>
 
   </Product>
