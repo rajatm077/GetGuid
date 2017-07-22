@@ -8,6 +8,8 @@
     <MajorUpgrade DowngradeErrorMessage="A newer version of SetupGetGuid is already installed." />
     <MediaTemplate  EmbedCab="yes"/>
 
+    <UIRef Id="WixUI_FeatureTree" />
+    
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFiles64Folder">
         <Directory Id="INSTALLFOLDER" Name="SetupGetGuid">
