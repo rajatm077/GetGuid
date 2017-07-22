@@ -1,30 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="SetupGetGuid" Language="1033" Version="1.0.0.0" Manufacturer="" UpgradeCode="21e9efed-e8e7-4558-adfc-bec21c9381bf">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
+  <Product Id="*" Name="SetupGetGuid" Language="1033" Version="1.0.0.0" Manufacturer="RMCorp" UpgradeCode="21e9efed-e8e7-4558-adfc-bec21c9381bf">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<Feature Id="ProductFeature" Title="SetupGetGuid" Level="1">
-			<ComponentGroupRef Id="ProductComponents" />
-		</Feature>
-	</Product>
+    <MajorUpgrade DowngradeErrorMessage="A newer version of SetupGetGuid is already installed." />
+    <MediaTemplate  EmbedCab="yes"/>
 
-	<Fragment>
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="SetupGetGuid" />
-			</Directory>
-		</Directory>
-	</Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="SetupGetGuid">
+          <Directory Id="docs" Name="docs" />
+        </Directory>
+      </Directory>
+    </Directory>
 
-	<Fragment>
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
-		</ComponentGroup>
-	</Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="MainApplication">
+        <File Source="D:\\MainApp\\ProdFiles\\check.txt" />
+      </Component>
+
+      <Component Id="ModuleA">
+        <File Source="D:\\MainApp\\ProdFiles\\ModuleA\\ModuleA.txt" />
+      </Component>
+      
+        <Component Id="ModuleB">
+        <File Source="D:\\MainApp\\ProdFiles\\ModuleB\\ModuleB.txt" />
+      </Component>
+      
+      <Component Id="ModuleC">
+        <File Source="D:\\MainApp\\ProdFiles\\ModuleC\\ModuleC.txt" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="DocComponents" Directory="docs">
+      <Component Id="Documentation">
+        <File Source="D:\\MainApp\\Docs\\docs.txt"/>        
+      </Component>
+      
+    <Component Id="ReadMe">
+        <File Source="D:\\MainApp\\Docs\\readme.txt"/>        
+      </Component>      
+    </ComponentGroup>
+
+    <Feature Id="ProductFeature" Title="SetupGetGuid" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="DocComponents" />
+    </Feature>
+
+  </Product>
 </Wix>
