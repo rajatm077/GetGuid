@@ -18,6 +18,14 @@
       </Directory>
     </Directory>
 
+    <Condition Message="Foo folder not found. Please install Foo and rerun the installer">
+      <![CDATA[Installer or FOOFOLDER]]>
+    </Condition>
+    <Property Id="FOOFOLDER">
+      <DirectorySearch Id="DirSearchFoo" Path="c:\Foo">        
+      </DirectorySearch>
+    </Property>
+    
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="MainApplication">
         <File Source="D:\\MainApp\\ProdFiles\\check.txt" />
