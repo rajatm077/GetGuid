@@ -18,13 +18,19 @@
       </Directory>
     </Directory>
 
-    <Condition Message="Foo folder not found. Please install Foo and rerun the installer">
-      <![CDATA[Installer or FOOFOLDER]]>
-    </Condition>
-    <Property Id="FOOFOLDER">
-      <DirectorySearch Id="DirSearchFoo" Path="c:\Foo">        
+    <Property Id="JETBRAINSFOLDER">
+      <DirectorySearch
+        Id="DirSearchProgramFiles"
+        Path="[ProgramFilesFolder]"
+        AssignToProperty="no">
+
+        <DirectorySearch Id="DirSearchJetBrains" Path="JetBrains" />
       </DirectorySearch>
     </Property>
+    
+    <Condition Message="JetBrains folder not found. Please install JetBrains and rerun the installer">
+      <![CDATA[Installed or JETBRAINSFOLDER]]>
+    </Condition>
     
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="MainApplication">
