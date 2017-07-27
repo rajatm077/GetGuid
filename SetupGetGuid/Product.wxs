@@ -9,11 +9,16 @@
     <MediaTemplate  EmbedCab="yes"/>
 
     <UIRef Id="WixUI_Minimal" />
-    
+
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLFOLDER" Name="SetupGetGuid">
           <Directory Id="docs" Name="docs" />
+
+          <Directory Id="ProgramMenuFolder">
+            <Directory Id="SetupGetGuidShortCuts" Name="SetupGetGui" />
+          </Directory>
+
         </Directory>
       </Directory>
     </Directory>
@@ -27,24 +32,38 @@
         <DirectorySearch Id="DirSearchJetBrains" Path="JetBrains" />
       </DirectorySearch>
     </Property>
-    
+
     <Condition Message="JetBrains folder not found. Please install JetBrains and rerun the installer">
       <![CDATA[Installed or JETBRAINSFOLDER]]>
     </Condition>
-    
+
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="MainApplication">
-        <File Source="D:\\MainApp\\ProdFiles\\check.txt" />
+        <File Source="D:\\MainApp\\ProdFiles\\check.txt">
+          <Shortcut 
+            Id="SetupGetGuiShortcut" 
+            Name="SetupGetGuid"
+            Description="My desc"
+            Directory="SetupGetGuidShortCuts"
+            WorkingDirectory="INSTALLFOLDER"            
+            Advertise="yes" />          
+        </File>
+
+        <RemoveFolder Id="DeleteSetupGetGuiShortcuts" 
+                      Directory="SetupGetGuidShortCuts"
+                      On="uninstall" />
+    
       </Component>
+      
 
       <Component Id="ModuleA">
         <File Source="D:\\MainApp\\ProdFiles\\ModuleA\\ModuleA.txt" />
       </Component>
-      
-        <Component Id="ModuleB">
+
+      <Component Id="ModuleB">
         <File Source="D:\\MainApp\\ProdFiles\\ModuleB\\ModuleB.txt" />
       </Component>
-      
+
       <Component Id="ModuleC">
         <File Source="D:\\MainApp\\ProdFiles\\ModuleC\\ModuleC.txt" />
       </Component>
@@ -52,12 +71,12 @@
 
     <ComponentGroup Id="DocComponents" Directory="docs">
       <Component Id="Documentation">
-        <File Source="D:\\MainApp\\Docs\\docs.txt"/>        
+        <File Source="D:\\MainApp\\Docs\\docs.txt"/>
       </Component>
-      
-    <Component Id="ReadMe">
-        <File Source="D:\\MainApp\\Docs\\readme.txt"/>        
-      </Component>      
+
+      <Component Id="ReadMe">
+        <File Source="D:\\MainApp\\Docs\\readme.txt"/>
+      </Component>
     </ComponentGroup>
 
     <Feature Id="ProdDocs" Title="Documnetation" Level="1">
@@ -66,18 +85,18 @@
 
     <Feature Id="ProdFeatures" Title="SetupGetGuid" Level="1">
       <ComponentRef Id="MainApplication" />
-      
+
       <Feature Id="ModuleA" Title="ModuleA" Level="1">
         <ComponentRef Id="ModuleA" />
       </Feature>
-      
+
       <Feature Id="ModuleB" Title="ModuleB" Level="1">
         <ComponentRef Id="ModuleB" />
       </Feature>
 
       <Feature Id="ModuleC" Title="ModuleC" Level="1">
         <ComponentRef Id="ModuleC" />
-      </Feature>
+      </Feature>      
     </Feature>
 
   </Product>
