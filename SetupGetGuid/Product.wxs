@@ -37,6 +37,21 @@
       <![CDATA[Installed or JETBRAINSFOLDER]]>
     </Condition>
 
+    <Component Id="UninstallShortcut" Guid="*" Directory="SetupGetGuidShortCuts">
+      <Shortcut Id="UninstallThisProduct" 
+                Name="uninstall SetupGetGuid"
+                Description="uninstall desc"
+                Target="[System64Folder]msiexec.exe"
+                Arguments="/x [ProductCode]" />
+      
+      <RegistryValue Root="HKCU"
+                     Key="Software\SetupGetGuid" 
+                     Name="installed"
+                     Type="integer"
+                     Value="1" 
+                     KeyPath="yes" />
+    </Component>
+    
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="MainApplication">
         <File Source="D:\\MainApp\\ProdFiles\\check.txt">
@@ -51,8 +66,7 @@
 
         <RemoveFolder Id="DeleteSetupGetGuiShortcuts" 
                       Directory="SetupGetGuidShortCuts"
-                      On="uninstall" />
-    
+                      On="uninstall" />    
       </Component>
       
 
@@ -96,7 +110,9 @@
 
       <Feature Id="ModuleC" Title="ModuleC" Level="1">
         <ComponentRef Id="ModuleC" />
-      </Feature>      
+      </Feature>
+
+      <ComponentRef Id="UninstallShortcut" />
     </Feature>
 
   </Product>
